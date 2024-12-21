@@ -21,6 +21,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -38,10 +39,18 @@ import com.google.firebase.auth.FirebaseAuthEmailException;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.security.Key;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.security.auth.login.LoginException;
@@ -55,6 +64,7 @@ public class Form_Cadastro extends AppCompatActivity {
     private EditText editNome,editEmail,editSenha;
     private TextView txtMensagemErro;
 
+    private String usuarioID;
     private Uri uSelecionarImagemUri;
 
     @Override
@@ -167,7 +177,33 @@ public class Form_Cadastro extends AppCompatActivity {
                     @Override
                     public void onSuccess(Uri uri) {
 
-                        Log.i("url_img", uri.toString());
+                        String foto = uri.toString();
+
+                        //Iniciar o banco de dados - Firestore
+                        String nome = editNome.getText().toString();
+                        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+                        Map<String,Object> usuarios = new HashMap<>();
+                        usuarios.put("nome", nome);
+                        usuarios.put("foto", foto);
+
+                        usuarioID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+                        DocumentReference documentReference = db.collection("Usuarios").document(usuarioID);
+                        documentReference.set(usuarios).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+
+                                Log.i("sucesso", "Usuario cadastrado.");
+
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+
+                                Log.i("falha", e.toString());
+                            }
+                        });
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {
