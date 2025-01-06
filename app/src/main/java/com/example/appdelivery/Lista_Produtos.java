@@ -6,13 +6,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -38,7 +34,8 @@ public class Lista_Produtos extends AppCompatActivity {
         int itemID = item.getItemId();
 
         if (itemID == R.id.perfil){
-            Toast.makeText(getApplicationContext(), "perfil clicado", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Lista_Produtos.this, Perfil_Usuario.class);
+            startActivity(intent);
         }
         else if (itemID == R.id.pedidos) {
             Toast.makeText(getApplicationContext(), "pedidos clicado", Toast.LENGTH_SHORT).show();

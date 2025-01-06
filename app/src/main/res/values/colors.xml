@@ -5,4 +5,5 @@
     <color name="grey">#DEDEDE</color>
     <color name="red">#FF0000</color>
     <color name="dark_red">#CC0000</color>
+    <color name="blue">#008dd0</color>
 </resources>

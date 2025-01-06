@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item app:showAsAction="always"
+        android:icon="@drawable/ic_menu_lateral"
+        android:title="">
+
+        <menu>
+            <item
+                android:id="@+id/perfil"
+                app:showAsAction="never"
+                android:icon="@drawable/ic_perfil"
+                android:title="Perfil"
+                />
+
+            <item
+                android:id="@+id/pedidos"
+                app:showAsAction="never"
+                android:icon="@drawable/ic_pedidos"
+                android:title="Pedidos"
+                />
+
+            <item
+                android:id="@+id/deslogar"
+                app:showAsAction="never"
+                android:icon="@drawable/ic_deslogar"
+                android:title="Sair da sessão"
+                />
+
+        </menu>
+
+
+    </item>
+
+
+</menu>

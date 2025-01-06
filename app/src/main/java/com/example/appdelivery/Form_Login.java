@@ -27,7 +27,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Objects;
 
-public class Form_Login extends AppCompatActivity {
+public class
+Form_Login extends AppCompatActivity {
 
     private EditText editEmail, editSenha;
     private TextView txtMensagemErro, txtCriarConta;
