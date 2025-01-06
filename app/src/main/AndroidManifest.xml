@@ -16,6 +16,9 @@
         android:theme="@style/Theme.AppDelivery"
         tools:targetApi="31">
         <activity
+            android:name=".Perfil_Usuario"
+            android:exported="false" />
+        <activity
             android:name=".Lista_Produtos"
             android:exported="false" />
         <activity
