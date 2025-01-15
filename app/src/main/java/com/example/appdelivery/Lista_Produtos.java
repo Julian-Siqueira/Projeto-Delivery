@@ -4,21 +4,27 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.appdelivery.Adapter.AdapterProdutos;
+import com.example.appdelivery.Modal.Produto;
 import com.google.firebase.auth.FirebaseAuth;
 
-import de.hdodenhof.circleimageview.CircleImageView;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Lista_Produtos extends AppCompatActivity {
 
     private RecyclerView recyclerViewProdutos;
+    private List<Produto> listaProdutos;
+
+    private AdapterProdutos adapterProdutos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +33,15 @@ public class Lista_Produtos extends AppCompatActivity {
         setContentView(R.layout.activity_lista_produtos);
 
         recyclerViewProdutos = findViewById(R.id.recycleView_produtos);
+        listaProdutos = new ArrayList<>();
+        adapterProdutos = new AdapterProdutos(listaProdutos);
+
+        recyclerViewProdutos.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        recyclerViewProdutos.setHasFixedSize(true);
+        recyclerViewProdutos.setAdapter(adapterProdutos);
+        Produtos();
+
+
     }
 
     @Override
@@ -57,5 +72,16 @@ public class Lista_Produtos extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void Produtos(){
+
+        Produto produto1 = new Produto("Pudim", "R$ 15,00", R.drawable.logo);
+        listaProdutos.add(produto1);
+        Produto produto2 = new Produto("Bolo de chocolate", "R$ 15,00", R.drawable.logo);
+        listaProdutos.add(produto2);
+        Produto produto3 = new Produto("macarrao", "R$ 15,00", R.drawable.logo);
+        listaProdutos.add(produto3);
+
     }
 }
