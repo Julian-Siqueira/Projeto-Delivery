@@ -1,6 +1,8 @@
 package com.example.appdelivery;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +33,14 @@ public class Perfil_Usuario extends AppCompatActivity {
         setContentView(R.layout.activity_form_perfil);
 
         inicializarComponentes();
+
+        btnEditarPerfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Perfil_Usuario.this, Alterar_Dados.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

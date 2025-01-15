@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".Alterar_Dados">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/foto_usuario"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@color/black"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"/>
+
+        <Button
+            android:id="@+id/btn_selecionar_foto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Selecionar uma foto"
+            android:backgroundTint="@android:color/transparent"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"/>
+
+        <EditText
+            android:id="@+id/edit_nome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nome"
+            android:inputType="textPersonName"
+            android:background="@drawable/edit_text_shape"
+            android:padding="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="20dp"/>
+        
+        <Button
+            android:id="@+id/btn_atualizar_dados"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Atualizar dados"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:backgroundTint="@android:color/holo_blue_dark"
+            android:padding="15dp"
+            android:layout_marginHorizontal="20dp"/>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
