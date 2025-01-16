@@ -5,13 +5,7 @@ public class Produto {
     private String nome;
     private String descricao;
     private String preco;
-    private int foto;
-
-    public Produto(String nome, String preco, int foto) {
-        this.nome = nome;
-        this.preco = preco;
-        this.foto = foto;
-    }
+    private String foto;
 
     public String getNome() {
         return nome;
@@ -21,11 +15,11 @@ public class Produto {
         this.nome = nome;
     }
 
-    public int getFoto() {
+    public String getFoto() {
         return foto;
     }
 
-    public void setFoto(int foto) {
+    public void setFoto(String foto) {
         this.foto = foto;
     }
 

@@ -14,7 +14,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appdelivery.Adapter.AdapterProdutos;
 import com.example.appdelivery.Modal.Produto;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +31,8 @@ public class Lista_Produtos extends AppCompatActivity {
 
     private AdapterProdutos adapterProdutos;
 
+    private FirebaseFirestore db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
@@ -34,12 +41,28 @@ public class Lista_Produtos extends AppCompatActivity {
 
         recyclerViewProdutos = findViewById(R.id.recycleView_produtos);
         listaProdutos = new ArrayList<>();
-        adapterProdutos = new AdapterProdutos(listaProdutos);
+        adapterProdutos = new AdapterProdutos(listaProdutos, getApplicationContext());
 
         recyclerViewProdutos.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerViewProdutos.setHasFixedSize(true);
         recyclerViewProdutos.setAdapter(adapterProdutos);
-        Produtos();
+
+        db = FirebaseFirestore.getInstance();
+        db.collection("Produtos")
+                .orderBy("nome")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()){
+                           for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()){
+                               Produto produto = queryDocumentSnapshot.toObject(Produto.class);
+                               listaProdutos.add(produto);
+                           }
+                            adapterProdutos.notifyDataSetChanged();
+                        }
+                    }
+                });
 
 
     }
@@ -72,16 +95,5 @@ public class Lista_Produtos extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void Produtos(){
-
-        Produto produto1 = new Produto("Pudim", "R$ 15,00", R.drawable.logo);
-        listaProdutos.add(produto1);
-        Produto produto2 = new Produto("Bolo de chocolate", "R$ 15,00", R.drawable.logo);
-        listaProdutos.add(produto2);
-        Produto produto3 = new Produto("macarrao", "R$ 15,00", R.drawable.logo);
-        listaProdutos.add(produto3);
-
     }
 }

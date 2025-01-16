@@ -1,29 +1,31 @@
 package com.example.appdelivery.Adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.appdelivery.Modal.Produto;
 import com.example.appdelivery.R;
 
-
-import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class AdapterProdutos extends RecyclerView.Adapter<AdapterProdutos.ProdutoViewHolder> {
 
     private List <Produto> listaProdutos;
+    private Context context;
 
-    public AdapterProdutos(List<Produto> listaProdutos) {
+    public AdapterProdutos(List<Produto> listaProdutos, Context context) {
         this.listaProdutos = listaProdutos;
+        this.context = context;
     }
 
     @NonNull
@@ -37,9 +39,9 @@ public class AdapterProdutos extends RecyclerView.Adapter<AdapterProdutos.Produt
 
     @Override
     public void onBindViewHolder(@NonNull ProdutoViewHolder holder, int position) {
+        Glide.with(context).load(listaProdutos.get(position).getFoto()).into(holder.foto);
         holder.nome.setText(listaProdutos.get(position).getNome());
         holder.preco.setText(listaProdutos.get(position).getPreco());
-        holder.foto.setImageResource(listaProdutos.get(position).getFoto());
 
     }
 
@@ -51,7 +53,7 @@ public class AdapterProdutos extends RecyclerView.Adapter<AdapterProdutos.Produt
     public class ProdutoViewHolder extends RecyclerView.ViewHolder{
 
         private TextView nome, preco;
-        private ImageView foto;
+        private CircleImageView foto;
         public ProdutoViewHolder(@NonNull View itemView) {
             super(itemView);
 
