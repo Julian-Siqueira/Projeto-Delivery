@@ -2,7 +2,7 @@
 
 ![telaCadastroLogin](https://github.com/user-attachments/assets/d371528b-a819-433a-9965-eed08c6457c9)
 
-Projeto é um aplicativo de delivery, onde conta com Cadastro de usuários, Banco de dados Firebase, autenticação de usuários, etc.<br>
+Projeto é um aplicativo de delivery, onde conta com Cadastro de usuários, Banco de dados Firebase, autenticação de usuários, edição de perfil.<br>
 
 ## Telas do App
 Tela de Cadastro:<br>
