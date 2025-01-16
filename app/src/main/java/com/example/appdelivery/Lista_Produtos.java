@@ -61,10 +61,13 @@ public class Lista_Produtos extends AppCompatActivity {
                             @Override
                             public void onItemClick(View view, int position) {
 
+                                Produto produto = listaProdutos.get(position);
                                 Intent intent  = new Intent(getApplicationContext(), Detalhes_Produto.class);
+                                intent.putExtra("nome", produto.getNome());
+                                intent.putExtra("descricao", produto.getDescricao());
+                                intent.putExtra("preco", produto.getPreco());
+                                intent.putExtra("foto", produto.getFoto());
                                 startActivity(intent);
-                                finish();
-
                             }
 
                             @Override
