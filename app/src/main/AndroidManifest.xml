@@ -16,6 +16,9 @@
         android:theme="@style/Theme.AppDelivery"
         tools:targetApi="31">
         <activity
+            android:name=".Detalhes_Produto"
+            android:exported="false" />
+        <activity
             android:name=".Alterar_Dados"
             android:exported="false" />
         <activity

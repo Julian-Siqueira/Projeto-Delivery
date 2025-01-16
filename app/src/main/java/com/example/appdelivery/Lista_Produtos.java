@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appdelivery.Adapter.AdapterProdutos;
 import com.example.appdelivery.Modal.Produto;
+import com.example.appdelivery.RecyclerViewItemClickListener.RecyclerItemClickListener;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -46,6 +49,37 @@ public class Lista_Produtos extends AppCompatActivity {
         recyclerViewProdutos.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerViewProdutos.setHasFixedSize(true);
         recyclerViewProdutos.setAdapter(adapterProdutos);
+
+        //Evento de click na recycleView
+
+        recyclerViewProdutos.addOnItemTouchListener(
+
+                new RecyclerItemClickListener(
+                        getApplicationContext(),
+                        recyclerViewProdutos,
+                        new RecyclerItemClickListener.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+
+                                Intent intent  = new Intent(getApplicationContext(), Detalhes_Produto.class);
+                                startActivity(intent);
+                                finish();
+
+                            }
+
+                            @Override
+                            public void onLongItemClick(View view, int position) {
+
+                            }
+
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                            }
+                        })
+        );
+
+
 
         db = FirebaseFirestore.getInstance();
         db.collection("Produtos")
