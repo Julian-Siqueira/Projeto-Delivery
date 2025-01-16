@@ -115,6 +115,7 @@ public class Form_Cadastro extends AppCompatActivity {
                             .setAction("Ok", new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
+
                                     finish();
                                 }
                             });
